@@ -1,0 +1,276 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto&display=swap" rel="stylesheet">
+
+<style>
+    #employee-problem-table {
+        position: relative;
+        font-family: 'Roboto';
+        width: 1040px;
+    }
+    #employee-headers {
+        font-family: 'Inter';
+        height: 35px;
+        background: #E69138;
+        color: #FFFFFF;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 18px;
+        letter-spacing: 0.06em;
+    }
+
+
+
+    .corner-left {
+        border-radius: 5px 0px 0px 0px;
+    }
+
+    .corner-right {
+        border-radius: 0px 5px 0px 0px;
+    }
+
+    .table-row {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        height: 45px;
+        outline: 1px solid #DBDBDB;
+    }
+
+    .table-row:hover {
+        background: #FFEFE0;
+    }
+
+    .status-solved {
+        color: #58E4A9;
+    }
+
+    .status-assigned {
+        color: #FFA34F;
+    }
+
+    .status-closed {
+        color: #DE2121;
+    }
+
+    .id {
+        width: 10%;
+        font-size: 18px;
+        line-height: 28px;
+        color: #B8B8B8;
+        padding-left: 10px;
+    }
+
+    .type {
+        width: 25%;
+        font-size: 18px;
+        line-height: 19px;
+        letter-spacing: 0.06em;
+        color: #000000;
+        padding-left: 10px;
+    }
+
+    .status {
+        width: 25%;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.06em;
+        padding-left: 10px;
+    }
+
+    .date {
+        width: 15%;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.06em;
+        padding-left: 10px;
+        color: #6D6D6D;
+    }
+
+    .priority {
+        width: 10%;
+        padding-left: 10px;
+    }
+
+    .priority div{
+        position: relative;
+        left: 10px;
+        width: 90px;
+        height: 30px;
+        border-radius: 4px;
+        color: white;
+    }
+
+    .priority p {
+        position:relative;
+        width: 90px;
+        top: 3px;
+        text-align: center;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 23px;
+        letter-spacing: 0.06em;
+        color: #FFFFFF;
+    }
+
+    .priority-high {
+        background: linear-gradient(90deg, #DE2121 39.85%, #DE214F 67.78%);
+    }
+
+    .priority-medium {
+        background: linear-gradient(90deg, #E69138 39.85%, #E66C38 67.78%);
+    }
+
+    .priority-low {
+        background: linear-gradient(90deg, #58E4A9 39.85%, #21DEBC 67.78%);
+    }
+
+    .prob-table-expand {
+        position: relative;
+        display: none;
+        margin: 0;
+        bottom: 1px;
+        height: 156px;
+    }
+    
+    .prob-table-expand td {
+        border: 2px solid #E69138;
+    }
+
+    .expand-description {
+        position: absolute;
+        width: 350px;
+        height: 70px;
+        letter-spacing: 0.06em;
+        left: 14px;
+        top: 10px;
+        font-size: 14px;
+    }
+
+    .expand-solution {
+        position: absolute;
+        width: 350px;
+        height: 70px;
+        color: #58E4A9;
+        letter-spacing: 0.06em;
+        left: 400px;
+        top: 10px;
+        font-size: 14px;
+    }
+    .expand-software {
+        position: absolute;
+        letter-spacing: 0.06em;
+        left: 20px;
+        bottom: 5px;
+        font-size: 14px;
+        color: #636363;
+    }
+    .expand-hardware {
+        position: absolute;
+        letter-spacing: 0.06em;
+        left: 300px;
+        bottom: 5px;
+        font-size: 14px;
+        color: #636363;
+    }
+
+    .expand-delete-button {
+        position: absolute;
+        border: none;
+        right: 10px;
+        bottom: 10px; 
+        width: 100px;
+        height: 30px;
+        border-radius: 7px;
+        letter-spacing: 0.06em;
+        color: white;
+        background: #F14C4C;
+    }
+</style>
+
+
+
+<table id = "employee-problem-table">
+    <tr id = "employee-headers">
+        <th class = "corner-left"> ID </th>
+        <th> Type </th>
+        <th> Status </th>
+        <th> Date sent </th>
+        <th class = "corner-right"> Priority </th>
+    </tr>
+</table>
+
+<script> 
+    function prob_table_select () {
+        var expand = this.parentNode.querySelector(".prob-table-expand");
+        expand.style.display = "table-row";
+        /* Removes current onClick event, adds new "deselect" onClick event */
+        this.style.background = "#FFEFE0";
+        var object = this;
+        this.onclick = function(){prob_table_deselect.call(object)};
+    }
+
+    function prob_table_deselect() {
+        var expand = this.parentNode.querySelector(".prob-table-expand");
+        expand.style.display = "none";
+        this.style.background = ""
+        var object = this;
+        this.onclick = function(){prob_table_select.call(this)};
+    }
+
+    function add_problem_row (id, type, status, specialist, date, priority, description, solution, software, hardware) {
+        var area = document.querySelector("#employee-problem-table");
+        var priority_symbol, status_symbol;
+        
+        if (priority == "low") {
+            priority_symbol = "<div class = 'priority-low'> <p>Low</p> <div>";
+        } else if (priority == "medium") {
+            priority_symbol = "<div class = 'priority-medium'> <p>Medium</p> <div>";
+        } else if (priority == "high") {
+            priority_symbol = "<div class = 'priority-high'> <p>High</p> <div>";
+        }
+
+        if (status == "closed") {
+            status_symbol = `<div class = 'status-closed'> <img src = 'Images/Circled cross.png'> Closed by ${specialist} <div>`;
+        } else if (status == "assigned") {
+            status_symbol = `<div class = 'status-assigned'> <img src = 'Images/Circled dash.png'> Assigned by ${specialist} <div>`;
+        } else if (status == "solved") {
+            status_symbol = `<div class = 'status-solved'> <img src = 'Images/Circled tick.png'> Solved by ${specialist} <div>`;
+        }
+        
+        var row = `
+            <tbody>
+                <tr id = ${id} class = "table-row" onClick = "prob_table_select.call(this)">
+                    <td class = "id"> #${id}      </td>
+                    <td class = "type"> ${type}    </td>
+                    <td class = "status"> ${status_symbol}  </td>
+                    <td class = "date"> ${date}    </td>
+                    <td class = "priority"> ${priority_symbol}</td>
+                </tr>
+                <tr class = "prob-table-expand" cols = "5">
+                    <td colspan = "5">
+                        <p class = "expand-description"> ${description} </p>
+                        <p class = "expand-solution"> ${solution} </p>
+                        <p class = "expand-software"> ${software}</p>
+                        <p class = "expand-hardware"> ${hardware}</p>
+                        <button class = "expand-delete-button"> Close ticket </button>
+
+                    </td>
+                </tr>
+            </tbody>
+            `
+        area.innerHTML += row;
+    }
+
+    add_problem_row("392", "Printer feed", "closed", "aran johnson", "19/01/2001", "high", "description", "solution", "software", "hardware");
+    add_problem_row("392", "Printer feed", "assigned", "aran johnson", "19/01/2001", "medium", "description", "solution", "software", "hardware");
+    add_problem_row("392", "Printer feed", "solved", "aran johnson", "19/01/2001", "low", "description", "solution", "software", "hardware");
+</script>
