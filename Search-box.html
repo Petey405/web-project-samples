@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+<style>
+    .Search-box {
+        position: relative;
+        height: 34px;
+        width: 240px;
+        border-radius: 7px;
+        border: 2px Solid #8D8D8D;
+    }
+
+    .Search-box:hover {
+        border: 2px Solid #6F6F6F;
+    }
+
+    .Search-box input {
+        position: relative;
+        background: none;
+        outline: none;
+        border: none;
+        color: #6F6F6F;
+        left: 10px;
+        height: 100%;
+        width: calc(100% - 50px);
+        font-size: 18px;
+    }
+    .SB-button {
+        position: absolute;
+        background: none;
+        border: none;
+        right: -2px;
+        top: -2px;
+        height: calc(100% + 4px);;
+        width: 40px;
+    }
+    .SB-button:hover {
+        background: #6F6F6F;
+        border-radius: 0px 7px 7px 0px;
+    }
+</style>
+</head>
+
+<body>
+    <div class = "Search-box">
+        <input placeholder = "Search">
+        <button class = "SB-button">
+            <img class = "SB-symbol" src = "Magnifying glass.png">
+        </button>
+    </div>
+</body>
