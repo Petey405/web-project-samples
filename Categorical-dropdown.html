@@ -1,0 +1,216 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<head>
+
+<style>
+    .dropdown {
+        position:relative;
+        width: 400px;
+        display: block;
+        height: 35px;
+    }
+
+    .dd-box {
+        position: relative;
+        display: inline-block;
+        text-align: centre;
+        border: 1.5px solid #8D8D8D;
+        border-radius: 7px 0px 0px 7px;
+        height: 100%;
+        width: 175px;
+    }
+
+    .dd-box:hover {
+        border: 1.5px solid #717070;
+    }
+
+    .dd-text {
+        color: #4F4F4F;
+        position: absolute;
+        width: calc(100% - 40px);
+        top: 30%;
+        bottom: 25%;
+        left: 15px;
+        margin: 0px;
+        vertical-align: middle;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 12px;
+        pointer-events: none;
+    }
+
+    .dd-button {
+        position: absolute;
+        top: 4px;
+        width: 40px;
+        height: calc(100% - 8px);
+        right: 0;
+        border-left: solid 2px #717070;
+        border-radius: 0px;
+    }
+
+    .dd-symbol {
+        position: relative;
+        pointer-events: none;
+        top: 4px;
+        left: 5px;
+        height: 20px;
+        width: 24px;
+    }
+
+    .dd-input-div {
+        position: relative;
+        bottom: 38px;
+        left: 176px;
+        width: 250px;
+        height: 35px;
+        border-radius: 0px 7px 7px 0px;
+        border: 1.5px solid #8D8D8D;
+    }
+
+    .dd-input-div:focus {
+        border: 1.5px solid #717070;
+    }
+
+    .dd-input {
+        position:relative;
+        left: 10px;
+        width: calc(100% - 40px);
+        height: 100%;
+        border: none;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+        color: #606060;
+    }
+
+    .dd-input:focus {
+        outline: none;
+    }
+
+    .dd-input-symbol {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 7px;
+        right: 10px;
+    }
+
+    .dd-expand {
+        position: absolute;
+        background-color: white;
+        z-index: 2;
+        top: 37px;
+        visibility:hidden;
+        width: 175px;
+        height: 0px;
+        border: 1px solid #C4C4C4;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .dd-option {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        margin: 0px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12pt;
+        font-style-color: #A3A3A3;
+        line-height: 12px;
+        
+    }
+
+    .dd-option p {
+        position: relative;
+        margin: 0px;
+        top: 9px;
+        left: 6px;
+    }
+
+    .dd-option:hover { 
+        background-color: #A8E7CC;
+        animation-name: fade in;
+        animation-duration: 0.25s;
+    }
+</style>
+ 
+</head>
+
+
+<div class = 'dropdown' id = 'name'>
+    <div class = 'dd-box'>
+        <p class = 'dd-text'> Categories </p>
+        <div class = 'dd-button'>
+            <img class = 'dd-symbol' src = 'Images/Arrow.png' alt = "">
+        </div>
+    </div>
+    <div class = "dd-input-div">
+        <input class = "dd-input" type = 'text' placeholder="Search">
+        <img class = 'dd-input-symbol' src = 'Magnifying glass/Arrow.png'>
+    </div>
+    <div class = 'dd-expand'>
+    </div>
+</div>
+
+<script>
+    function populate(id, options) {
+    	var dropdown = document.getElementById(id);
+    	var expand = dropdown.querySelector(".dd-expand");
+        var height = 0;
+    	options.forEach((option) => {
+    		var expand = dropdown.querySelector(".dd-expand");
+            height += 30;
+    		var HTML = "<div class = 'dd-option' onClick = \"select('" + id + "', '" + option + "')\"> <p> " + option + " </p> </div>";
+    		expand.innerHTML += HTML;
+    	})
+        if (height > 200) {
+            height = 200;
+        }
+        expand.style.height = height + "px";
+        ;	
+    }
+    
+    function expand(dropdown) {
+        var dropdown = document.getElementById(dropdown);
+        var box = dropdown.querySelector(".dd-box");
+        var expand = dropdown.querySelector(".dd-expand");
+        expand.style.visibility = "visible";
+        box.style.borderRadius = "7px 0px 0px 0px";
+    }
+    
+    function select(id, option) {
+        var dropdown = document.getElementById(id);
+        var box = dropdown.querySelector(".dd-box");
+        var expand = dropdown.querySelector(".dd-expand");
+        var text = box.querySelector(".dd-text");
+        text.innerHTML = option;
+        expand.style.visibility = "hidden";
+        box.style.borderRadius = "7px";
+    }
+    
+    window.addEventListener("click", function(event) {
+        if (!event.target.matches(".dropdown div") || event.target.matches(".dd-option")) {
+            var dropdowns = document.querySelectorAll(".dropdown");
+            dropdowns.forEach((dropdown) => {
+                var box = dropdown.querySelector(".dd-box");
+                var expand = dropdown.querySelector(".dd-expand");
+                box.style.borderRadius = "7px 0px 0px 7px";
+                expand.style.visibility = "hidden";
+            });
+        }
+    });
+  
+document.getElementById('name').addEventListener('click', function(){expand('name');});
+populate("name", ["option", "option2", "option3", "option4", "option5", "option6", "option7", "option8"])
+  
+</script>
