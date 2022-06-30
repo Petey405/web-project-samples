@@ -1,0 +1,399 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto&display=swap" rel="stylesheet">
+
+<style>
+    .solutions-table {
+        position:relative;
+        width: 870px;
+        font-family: 'Roboto';
+    }
+
+    .general-advice-header th {
+        border-radius: 10px 10px 0px 0px;
+        background: #58E4A9;
+        height: 43px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        color: #FFFFFF;
+    }
+
+    .general-advice-entries{
+    }
+
+    .general-advice-entry {
+        font-family: 'Inter';
+        border: 1.5px solid #DBDBDB;
+    }
+
+    .general-advice-entry:hover {
+        background: #DEFFF1;
+    }
+
+    .general-advice-entry h1 {
+        padding-left: 12px;
+        padding-top: 9px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #000000;
+    }
+
+    .general-advice-entry p {
+        position: relative;
+        bottom: 5px;
+        padding-left: 31px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #878787;
+    }
+
+    .solutions-title th {
+        background: #58E4A9;
+        height: 43px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        letter-spacing: 0.06em;
+        color: #FFFFFF;
+    }
+
+    .solutions-headers th {
+        background: #F5F5F5;
+        height: 47px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        text-align: left;
+        padding-left: 10px;
+        line-height: 18px;
+        letter-spacing: 0.06em;
+        color: #A2A2A2;
+    }
+
+    .solutions-headers .prob-type {
+        width: 22%;
+    }
+
+    .solutions-headers .soft-hard {
+        width: 22%;
+    }
+
+    .solutions-headers .desc {
+        width: 56%;
+    }
+
+    .solution-entry {
+        height: 56px;
+        font-family: 'Inter';
+    }
+
+    .solution-entry:hover {
+        background: #DEFFF1;
+    }
+
+    .problem-cell {
+        border-top: 1.5px solid #DBDBDB;
+        border-bottom: 1.5px solid #DBDBDB;
+        border-left: 1.5px solid #DBDBDB;
+    }
+
+    .problem-text {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        padding-left: 10px;
+    }
+
+    .soft-hard-cell {
+        position: relative;
+        border-top: 1.5px solid #DBDBDB;
+        border-bottom: 1.5px solid #DBDBDB;
+    }
+
+    .software-text, .hardware-text {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        color: #727272;
+    }
+
+    .software-text {
+        position: absolute;
+        margin: 0;
+        top: 8px;
+        left: 40px;
+    }
+
+    .software-symbol {
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        margin: 0;
+        top: 8px;
+        left: 10px;
+    }
+
+    .hardware-text {
+        position: absolute;
+        margin: 0;
+        bottom: 8px;
+        left: 40px;
+    }
+
+    .hardware-symbol {
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        margin: 0;
+        bottom: 8px;
+        left: 10px;
+    }
+
+    .desc-cell {
+        border-top: 1.5px solid #DBDBDB;
+        border-bottom: 1.5px solid #DBDBDB;
+        border-right: 1.5px solid #DBDBDB;
+    }
+
+    .description-text {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .expanded-cell {
+        position: relative;
+        display: none;
+        margin: 0;
+        bottom: 1px;
+        height: 156px;
+        border: 2px solid #58E4A9;
+    }
+
+    .full-description {
+        position: absolute;
+        color: #393939;
+        font-size: 14px;
+        margin: 0;
+        left: 20px;
+        top: 10px;
+    }
+
+    .solution {
+        position: absolute;
+        color: #393939;
+        left: 20px;
+        top: 55px;
+    }
+
+        .Search-box {
+        position: relative;
+        height: 34px;
+        width: 240px;
+        border-radius: 7px;
+        border: 2px Solid #8D8D8D;
+    }
+
+    .Search-box:hover {
+        border: 2px Solid #6F6F6F;
+    }
+
+    .Search-box input {
+        position: relative;
+        background: none;
+        outline: none;
+        border: none;
+        color: #6F6F6F;
+        left: 10px;
+        height: 100%;
+        width: calc(100% - 50px);
+        font-size: 18px;
+    }
+    .SB-button {
+        position: absolute;
+        background: none;
+        border: none;
+        right: -2px;
+        top: -2px;
+        height: calc(100% + 4px);;
+        width: 40px;
+    }
+    .SB-button:hover {
+        background: #6F6F6F;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+</style>
+
+<body>
+    <div class = "Search-box" id = "Solution-table-lookup">
+        <input placeholder = "Search">
+        <button class = "SB-button">
+            <img class = "SB-symbol" src = "Magnifying glass.png">
+        </button>
+    </div>
+</body>
+
+<br>
+
+<table class = "solutions-table" cellspacing = "0">
+    <thead class = "general-advice-header">
+        <tr>
+            <th colspan="3"> General Advice </th>
+        </tr>
+    </thead>
+    <tbody class = "general-advice-entries">
+    </tbody>
+    <thead cols = "3">
+        <tr class = "solutions-title">
+            <th colspan = "3"> Similar problems </th>
+        </tr>
+        <tr class = "solutions-headers">
+            <th class = "prob-type"> Problem type </th>
+            <th class = "soft-hard"> Software / Hardware </th>
+            <th class = "desc"> Description </th>
+        </tr>
+    </thead>
+    <tbody class = "solution-entries">
+    </tbody>
+</table>
+
+<script>
+    //Adds table row to "General Advice" section containing data
+    function add_general_entry (data) {
+        var entry_area = document.querySelector(".general-advice-entries");
+        var entry = ` 
+            <tr>
+                <td colspan = '3' class = 'general-advice-entry'> 
+                    <h1> ` + data["title"] + ` </h1>
+                    <p> ` + data["description"] + ` </p>
+                </td>
+            </tr>
+        `;
+        entry_area.innerHTML += entry;
+    }
+
+    //Adds table row to "Similar Problems" section containing data
+    function add_solution_entry (data) {
+        var entry_area = document.querySelector(".solutions-table");
+        var description = data["description"];
+        if (description.length > 250) {
+            description = description.slice(0, 250);
+            description += " <b> ... </b>"
+        }
+        var entry = `
+            <tbody class = "full_solution_entry" >
+                <tr class = "solution-entry" onClick = "row_select.call(this)">
+                    <td class = "problem-cell"> 
+                        <p class = "problem-text"> ` + data["problem"] + ` <p> 
+                    </td>
+                    <td class = "soft-hard-cell"> 
+                        <img class = "software-symbol" src = "Images/Software symbol.png">
+                        <p class = "software-text"> ` + data["software"] + ` </p>
+                        <img class = "hardware-symbol" src = "Images/Hardware symbol.png">
+                        <p class = "hardware-text"> ` + data["hardware"] + ` </p>
+                    </td>
+                    <td class = "desc-cell">
+                        <p class = "description-text"> ` + description + `</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "expanded-cell" colspan = "3">
+                        <p class = "full-description"> ` + data["description"] + ` </p>
+                        <p class = "solution"> ` + data["solution"] + ` </p>
+                    </td>
+                <tr>
+            </tbody>
+        `;
+        entry_area.innerHTML += entry;
+    }
+
+    //Makes a specified row visible
+    function row_select() {
+        /* Makes extra row containing solution visible */
+        var expand = this.parentNode.querySelector(".expanded-cell");
+        expand.style.display = "table-cell";
+
+        /* Removes current onClick event, adds new "deselect" onClick event */
+        this.style.background = "#DEFFF1"
+        var object = this;
+        this.onclick = function(){row_deselect.call(object)};
+    }
+
+    //Makes a specified row invisible
+    function row_deselect() {
+        var expand = this.parentNode.querySelector(".expanded-cell");
+        expand.style.display = "none";
+        this.style.background = ""
+        var object = this;
+        this.onclick = function(){row_select.call(this)};
+    }
+
+    //Scans table for "term" (search term), shows all rows containing term in any column, hides all others
+    function solution_search(term) {
+        term = term.toLowerCase()
+        var field = document.querySelector(".general-advice-entries");
+        var children = field.children;
+        for (var i = 0; i < children.length; i++) {
+            var tableChild = children[i];
+            var title = tableChild.querySelector("h1").innerHTML.toLowerCase();
+            var description = tableChild.querySelector("p").innerHTML.toLowerCase();
+            if (title.includes(term)) {
+                tableChild.style.display = "";
+            } 
+            else if (description.includes(term)) {
+                tableChild.style.display = "";
+            }
+            else {
+                tableChild.style.display = "none";
+            }
+        }
+
+        var children = document.querySelectorAll(".full_solution_entry");
+        for (var i = 0; i < children.length; i++) {
+            var tableChild = children[i];
+            var problem = tableChild.querySelector(".problem-text").innerHTML.toLowerCase();
+            var software = tableChild.querySelector(".software-text").innerHTML.toLowerCase();
+            var hardware = tableChild.querySelector(".hardware-text").innerHTML.toLowerCase();
+            var description = tableChild.querySelector(".description-text").innerHTML.toLowerCase();
+            if (problem.includes(term)) {
+                tableChild.style.display = "";
+            } 
+            else if (software.includes(term)) {
+                tableChild.style.display = "";
+            }
+            else if (hardware.includes(term)) {
+                tableChild.style.display = "";
+            }
+            else if (description.includes(term)) {
+                tableChild.style.display = "";
+            }
+            else {
+                tableChild.style.display = "none";
+            }
+        }
+    }
+
+    //adds event listener to search box
+    var search_box_input  = document.querySelector("#Solution-table-lookup input")
+    search_box_input.addEventListener("keyup", function(){ solution_search(this.value) });
+
+    //example data
+    add_general_entry({"title":"example title", "description" : "Very long description that laboriesly outllines the specific problem that I am having in regards to some technology that I possess that doesn't seem to be workign due to some kind of technical issue that appears to have almost fully interrupted the operation of the hardware that I hold. asd asdjagsd asdg jhdsg ajdsg ajdsg ajsdhg asjdg asjdh gasdjh gasdjh asgdjg "})
+    add_general_entry({"title":"If you have this problem", "description" : "do this thing"})
+    add_solution_entry({"problem" : "type", "software": "safari", "hardware": "computer", "description": "Very long description that laboriesly outllines the specific problem that I am having in regards to some technology that I possess that doesn't seem to be workign due to some kind of technical issue that appears to have almost fully interrupted the operation of the hardware that I hold. asd asdjagsd asdg jhdsg ajdsg ajdsg ajsdhg asjdg asjdh gasdjh gasdjh asgdjg "})
+    add_solution_entry({"problem" : "testing", "software": "Mozilla Firefox", "hardware" : "Iphone 7", "description": "a problem with my stuff", "solution": "very bad"})
+</script>
