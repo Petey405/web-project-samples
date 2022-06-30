@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<!-- 
+ (MLTB) Multi Line Text Box
+ 
+ to create:
+ 1. place php include for "MLTB.php" in head of document
+ 
+ 2. use php function createMLTB(name, title, placeholder, width, height) at positions you want to add MLTB
+    - name is the ID of created MLTB
+    - placeholder is text inside the box before typing
+    - title is the title above the text box e.g. Enter name:, Enter telephone etc.
+    - height of text box
+    - width of text box
+(all values must be in speech marks)
+ 
+Comes with 2 functions reject & accept
+ 
+ reject(message, name) <- change box colour to red & add cross to show input by user was rejected, displays message underneath
+ accept(message, name) <- change box colur to green & add arrow to show input by user was accepted, displays message underneath
+(name is the ID of the MLTB you want to change)
+ -->
+
+    <style>
+        .MLTB {
+            position: relative;
+            height: 400px;
+            width: 300px;
+        }
+        .MLTB .box {
+            position: relative;
+            bottom: 10px;
+            box-sizing: border-box;
+            border: 2px Solid #C4C4C4;
+            border-radius: 5px;
+            width: 100%;
+            height: calc(100% - 20px);
+        }
+        .MLTB textarea {
+            position: relative;
+            resize: none;
+            left: 5px;
+            top: 6px;
+            width: calc(100% - 14px);
+            height: calc(100% - 40px);
+            background: none;
+            outline: none;
+            border: none;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        
+        .MLTB input:focus {
+            border-bottom: 2px solid #636363;
+        }
+
+        .MLTB .symbol {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+        }
+
+        .MLTB .Title {
+            position: relative;
+            left: 11px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 16px;
+            right-align: 10px;
+        }
+        .MLTB .verification {
+            visibility: hidden;
+            position: relative;
+            width: calc(100% - 10px);
+            height: 40px;
+            bottom: 10px;
+            left: 0;
+            
+        }
+        .MLTB .message {
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            line-height: 12px;
+            text-align: right;
+            right: 30px;
+            top: 5px
+        }
+    </style>
+</head>
+
+<body> 
+            <div class = "MLTB" id = "name" style = "width : 400px; height : 200px;">
+                <p class = "Title"> Please enter your name: </p>
+                <div class = "box">
+                    <textarea class = "input" placeholder = "Placeholder text" onfocusout="acceptMLTB('name', 'Response saved');"></textarea>
+                    <div class = "verification">
+                        <p class = "message"> Verification here </p>
+                        <img class = "symbol" src = "Images/Circled tick.png">
+                    </div>
+                </div>   
+            </div>
+    <script>
+        function rejectMLTB(name, message){
+        	var MLTB = document.getElementById(name);
+            var text = MLTB.querySelector(".message");
+            var box = MLTB.querySelector(".box");
+            var verification = box.querySelector(".verification");
+            var symbol = box.querySelector(".symbol");
+            text.innerHTML = message;
+            text.style.color = "#DE2121";
+            text.style.display = "block";
+            box.style.border = "2px solid #DE2121";
+            verification.style.visibility = "visible";
+            symbol.src = "Images/Circled cross.png";
+        }
+        function acceptMLTB(name, message){
+        	var MLTB = document.getElementById(name);
+            var text = MLTB.querySelector(".message");
+            var box = MLTB.querySelector(".box");
+            var verification = box.querySelector(".verification");
+            var symbol = box.querySelector(".symbol");
+            text.innerHTML = message;
+            text.style.color = "#58E4A9";
+            text.style.display = "block";
+            box.style.border = "2px solid #58E4A9";
+            verification.style.visibility = "visible";
+            symbol.src = "Images/Circled tick.png";
+        }
+        
+        //clears MLTB text input
+        function clearMLTB(name){
+        	var MLTB = document.getElementById(name)
+			MLTB.querySelector("textarea").value = "";
+        }
+        
+        //returns MLTB text input
+        function fetchMLTB(name){
+        	var MLTB = document.getElementById(name)
+			return MLTB.querySelector("textarea").value;
+        }
+        function setMLTB(name, value){
+        	var MLTB = document.getElementById(name)
+			MLTB.querySelector("textarea").value = value;
+        }
+
+    </script>
+</body>
