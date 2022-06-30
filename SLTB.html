@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+
+<head>
+
+<!-- 
+ Single Line Text Box
+ 
+ to create Single Line Text Box paste a php include for "SLTB.php" in head of document
+ 
+ then use php function createSLTB(name, placeholder, title) at the positions you want to add the single line text box
+  - name is the ID of created SLTB
+  - placeholder is the placeholder text inside the box before typing
+  - title is the title above the text box e.g. Enter name:, Enter telephone etc.
+ 
+ Comes with 2 functions reject & accept
+ 
+ reject(name, message) <- change box colour to red & add cross to show input by user was rejected, displays message underneath
+ accept(name, message) <- change box colur to green & add arrow to show input by user was accepted, displays message underneath
+(name is the ID of the SLTB you want to change)
+ -->
+    
+    <style>
+        .SLTB {
+            position: relative;
+            height: 90px;
+            width: 300px;
+        }
+        .SLTB .box {
+            position: relative;
+            bottom: 10px;
+            box-sizing: border-box;
+            border: 2px Solid #C4C4C4;
+            border-radius: 5px;
+            width: 300px;
+            height: 35px;
+        }
+        .SLTB input {
+            position: relative;
+            left: 5px;
+            right: 40px;
+            bottom: 2px;
+            width: calc(100% - 40px);
+            height: 100%;
+            background: none;
+            outline: none;
+            border: none;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        
+        .SLTB input:focus {
+            border-bottom: 2px solid #636363;
+        }
+
+        .SLTB .symbol {
+            display: none;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 4px;
+            bottom: 4px;
+        }
+
+        .SLTB .Title {
+            position: relative;
+            left: 11px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 16px;
+            right-align: 10px;
+        }
+        .SLTB .verification {
+            display: none;
+            position: relative;
+            bottom: 15px;
+            left: 10px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            line-height: 12px;
+        }
+    </style>
+</head>
+
+<body> 
+    <div class = "SLTB" id = "name">
+        <p class = "Title"> Title </p>
+        <div class = "box" style = "width: 300px"}>
+                <input type = "text" placeholder= "Placeholder">
+                <img class = "symbol" src = "Images/Cross-icon.png">
+        </div>
+        <p class = "verification"> Verification here </p>
+    </div>
+    <script>
+    
+    	//sets SLTB to rejected format with red borders while display a message
+        function rejectSLTB(name, message){
+        	var SLTB = document.getElementById(name);
+            var text = SLTB.querySelector(".verification");
+            var box = SLTB.querySelector(".box");
+            var symbol = box.querySelector(".symbol");
+            text.innerHTML = message;
+            text.style.color = "#DE2121";
+            text.style.display = "block";
+            box.style.border = "2px solid #DE2121";
+            symbol.display = "block";
+            symbol.src = "Images/Cross-icon.png";
+        }
+        
+        //sets SLTB to accepted format with green borders while display a message
+        function acceptSLTB(name, message){
+        	var SLTB = document.getElementById(name);
+            var text = SLTB.querySelector(".verification");
+            var box = SLTB.querySelector(".box");
+            var symbol = box.querySelector(".symbol");
+            text.innerHTML = message;
+            text.style.color = "#58E4A9";
+            text.style.display = "block";
+            box.style.border = "2px solid #58E4A9";
+            symbol.display = "block";
+            symbol.src = "Images/Tick-icon.png";
+        }
+        
+        //clears SLTB text input
+        function clearSLTB(name){
+        	var SLTB = document.getElementById(name);
+			SLTB.querySelector("input").value = "";
+        }
+        
+        //returns SLTB text input
+        function fetchSLTB(name){
+        	var SLTB = document.getElementById(name);
+			return SLTB.querySelector("input").value;
+        }
+        
+        //sets SLTB text input to a value <- for problem tabs
+        function setSLTB(name, value){
+        	var SLTB = document.getElementById(name);
+        	SLTB.querySelector("input").value = value;
+        }
+
+        rejectSLTB("name", "This is in the wrong file")
+        acceptSLTB("name", "Success!")
+    </script>
+</body> 
